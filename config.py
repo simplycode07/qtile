@@ -62,7 +62,8 @@ screens = [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
-                widget.WindowName(),
+                # widget.WindowName(),
+                widget.TaskList(icon_size=20, border="00000000", margin=0, padding=0, padding_x=5, parse_text=lambda x: x[:15]),
                 # widget.Chord(
                 #     chords_colors={
                 #         "launch": ("#00ff00", "#ffffff"),
@@ -72,11 +73,12 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.Clock(format="%d %h, %H:%m"),
                 widget.PulseVolume(fmt="Vol:{}", step=2),
-                widget.QuickExit(default_text="[Exit Qtile]", countdown_format="[{}]"),
+                widget.Battery(format='{char} {percent:2.0%} {watt:.1f} W'),
+                widget.QuickExit(default_text="[Exit]", countdown_format="[{}]"),
             ],
-            24,
+            20,
             border_width=[2, 2, 2, 2],  # Draw top and bottom borders
             border_color=["00ffff", "00000000", "00ffff", "00000000"]  # Borders are magenta
         ),

@@ -57,6 +57,11 @@ keys = [
     Key([mod], "b", lazy.spawn("brave-browser"), desc="Spawn brave browser"), 
     Key([mod], "e", lazy.spawn("nemo"), desc="Spawn File explorer"),
 
+    # screenshot
+    # Key([], "Print", lazy.spawn("gnome-screenshot -c -p"), desc="Copy Screenshot to Clipboard")
+    Key([], "Print", lazy.spawn("gnome-screenshot -p"), desc="Copy Screenshot to Clipboard"),
+    Key(["shift"], "Print", lazy.spawn("gnome-screenshot -a -p"), desc="Screenshot of area to clipboard"),
+
     # sound and volume controls
     Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol(), desc="Increase Vol"),
     Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol(), desc="Decrease Vol"),
