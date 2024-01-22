@@ -13,24 +13,18 @@ groups=[Group("1"), Group("2"), Group("3")]
 for i in groups:
     keys.extend(
         [
-            # mod1 + letter of group = switch to group
             Key(
                 [mod],
                 i.name,
                 lazy.group[i.name].toscreen(),
                 desc="Switch to group {}".format(i.name),
             ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
             Key(
                 [mod, "shift"],
                 i.name,
                 lazy.window.togroup(i.name, switch_group=True),
                 desc="Switch to & move focused window to group {}".format(i.name),
             ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
@@ -39,7 +33,6 @@ layouts = [
                    border_width=10,
                    lower_right=True),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -62,7 +55,7 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         # lazy.screen.set_wallpaper("/home/dhruv/Wallpapers/pxfuel.jpg", mode="fill")
-        wallpaper="/home/dhruv/Wallpapers/1.jpg",
+        wallpaper="/home/dhruv/Wallpapers/6.png",
         wallpaper_mode="fill",
         top=bar.Bar(
             [
@@ -85,7 +78,7 @@ screens = [
             ],
             24,
             border_width=[2, 2, 2, 2],  # Draw top and bottom borders
-            border_color=["ff00ff", "ff00ff", "ff00ff", "ff00ff"]  # Borders are magenta
+            border_color=["00ffff", "00000000", "00ffff", "00000000"]  # Borders are magenta
         ),
         right=bar.Gap(9),
         left=bar.Gap(9),

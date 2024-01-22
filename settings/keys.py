@@ -58,6 +58,6 @@ keys = [
     Key([mod], "e", lazy.spawn("nemo"), desc="Spawn File explorer"),
 
     # sound and volume controls
-    Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol(5), desc="Increase Vol"),
-    Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol(5), desc="Decrease Vol"),
+    Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol(), desc="Increase Vol"),
+    Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol(), desc="Decrease Vol"),
 ]
