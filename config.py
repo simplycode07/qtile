@@ -2,12 +2,13 @@ from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from settings.keys import keys
-import os
-import subprocess
+import os, random, subprocess
 
 mod = "mod4"
 terminal = "kitty"
-max_title_length = 15
+max_title_length = 0
+
+random_pic = random.choice(os.listdir("/home/dhruv/Wallpapers/"))
 
 groups=[Group("1"), Group("2"), Group("3")]
 
@@ -30,7 +31,7 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus=["#00000000", "#00ffff"], 
+    layout.Columns(border_focus=["#00000000", "#7AA2F7"], 
                    border_width=10,
                    lower_right=True),
     layout.Max(),
@@ -56,42 +57,54 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         # lazy.screen.set_wallpaper("/home/dhruv/Wallpapers/pxfuel.jpg", mode="fill")
-        wallpaper="/home/dhruv/Wallpapers/6.png",
+        wallpaper="/home/dhruv/Wallpapers/"+random_pic,
         wallpaper_mode="fill",
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.CurrentLayout(padding=2),
+                widget.GroupBox(padding=4),
                 widget.Prompt(),
-                # widget.WindowName(),
                 widget.TaskList(icon_size=20,
                                 border="00000000",
                                 margin=0,
-                                padding=0,
+                                padding_y=0,
                                 padding_x=5,
-                                parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_len else ""
+                                parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_length else ""
 
                                 ),
-                # widget.Chord(
-                #     chords_colors={
-                #         "launch": ("#00ff00", "#ffffff"),
-                #     },
-                #     name_transform=lambda name: name.upper(),
-                # ),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%d %h, %H:%m"),
-                widget.PulseVolume(fmt="Vol:{}", step=2),
-                widget.Battery(format='{char} {percent:2.0%} {watt:.1f} W'),
-                widget.QuickExit(default_text="[Exit]", countdown_format="[{}]"),
+
+                widget.ThermalZone(padding=2, margin=2),
+
+                widget.Clock(format="%d %h, %H:%M",
+                             padding_x=2,
+                             margin_x=2),
+
+                widget.PulseVolume(fmt="󰓃 {}",
+                                   step=2,
+                                   padding=2),
+
+                widget.Battery(format='{char} {percent:2.0%} {watt:.1f} W',
+                               padding=2,
+                               discharge_char = "",
+                               charge_char = "󱐋",
+                               empty_char = "∅"),
+
+                widget.Backlight(backlight_name="amdgpu_bl0",
+                                 change_command="brightnessctl set {0}%",
+                                 step=5.2,
+                                 padding=2),
+
+                widget.QuickExit(default_text="[Exit]",
+                                 countdown_format="[{} Sec]",
+                                 padding=2),
             ],
             20,
-            border_width=[2, 2, 2, 2],  # Draw top and bottom borders
-            border_color=["00ffff", "00000000", "00ffff", "00000000"]  # Borders are magenta
+
+            border_width=[2, 2, 2, 2], 
+            border_color=["#7AA2F7", "00000000", "#7AA2F7", "00000000"]  
         ),
-        right=bar.Gap(9),
-        left=bar.Gap(9),
+        right=bar.Gap(20),
+        left=bar.Gap(20),
 
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
