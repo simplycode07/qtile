@@ -7,6 +7,7 @@ import subprocess
 
 mod = "mod4"
 terminal = "kitty"
+max_title_length = 15
 
 groups=[Group("1"), Group("2"), Group("3")]
 
@@ -63,7 +64,14 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 # widget.WindowName(),
-                widget.TaskList(icon_size=20, border="00000000", margin=0, padding=0, padding_x=5, parse_text=lambda x: x[:15]),
+                widget.TaskList(icon_size=20,
+                                border="00000000",
+                                margin=0,
+                                padding=0,
+                                padding_x=5,
+                                parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_len else ""
+
+                                ),
                 # widget.Chord(
                 #     chords_colors={
                 #         "launch": ("#00ff00", "#ffffff"),
