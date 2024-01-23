@@ -59,18 +59,19 @@ keys = [
     Key([mod], "e", lazy.spawn("nemo"), desc="Spawn File explorer"),
 
     # screenshot
-    # Key([], "Print", lazy.spawn("gnome-screenshot -c -p"), desc="Copy Screenshot to Clipboard")
     Key([], "Print", lazy.spawn("gnome-screenshot -p"), desc="Copy Screenshot to Clipboard"),
     Key(["shift"], "Print", lazy.spawn("gnome-screenshot -a -p"), desc="Screenshot of area to clipboard"),
 
     # sound and volume controls
+    Key([], "XF86AudioMute", lazy.widget["pulsevolume"].mute()),
     Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol(), desc="Increase Vol"),
     Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol(), desc="Decrease Vol"),
     
     # brightness control
-
-    # Key([], "XF86MonBrightnessUp", lazy.widget["backlight"].change_backlight(backlight.ChangeDirection.UP)),
-    # Key([], "XF86MonBrightnessDown", lazy.widget["backlight"].change_backlight(backlight.ChangeDirection.DOWN)),
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 5%+")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
+
+    # move between workspaces
+    Key([mod], "Tab", lazy.screen.next_group()),
+    Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
 ]

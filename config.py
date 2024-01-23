@@ -2,11 +2,12 @@ from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from settings.keys import keys
+from settings.screens import screens
 import os, random, subprocess
 
 mod = "mod4"
 terminal = "kitty"
-max_title_length = 0
+max_title_length = 5
 
 random_pic = random.choice(os.listdir("/home/dhruv/Wallpapers/"))
 
@@ -31,8 +32,11 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus=["#00000000", "#7AA2F7"], 
-                   border_width=10,
+    layout.Columns(border_focus="#7AA2F7",
+                   border_normal="#00000000",
+                   border_width=5,
+                   margin=5,
+                   margin_y=3,
                    lower_right=True),
     layout.Max(),
     # layout.Stack(num_stacks=2),
@@ -54,64 +58,6 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        # lazy.screen.set_wallpaper("/home/dhruv/Wallpapers/pxfuel.jpg", mode="fill")
-        wallpaper="/home/dhruv/Wallpapers/"+random_pic,
-        wallpaper_mode="fill",
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(padding=2),
-                widget.GroupBox(padding=4),
-                widget.Prompt(),
-                widget.TaskList(icon_size=20,
-                                border="00000000",
-                                margin=0,
-                                padding_y=0,
-                                padding_x=5,
-                                parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_length else ""
-
-                                ),
-
-                widget.ThermalZone(padding=2, margin=2),
-
-                widget.Clock(format="%d %h, %H:%M",
-                             padding_x=2,
-                             margin_x=2),
-
-                widget.PulseVolume(fmt="󰓃 {}",
-                                   step=2,
-                                   padding=2),
-
-                widget.Battery(format='{char} {percent:2.0%} {watt:.1f} W',
-                               padding=2,
-                               discharge_char = "",
-                               charge_char = "󱐋",
-                               empty_char = "∅"),
-
-                widget.Backlight(backlight_name="amdgpu_bl0",
-                                 change_command="brightnessctl set {0}%",
-                                 step=5.2,
-                                 padding=2),
-
-                widget.QuickExit(default_text="[Exit]",
-                                 countdown_format="[{} Sec]",
-                                 padding=2),
-            ],
-            20,
-
-            border_width=[2, 2, 2, 2], 
-            border_color=["#7AA2F7", "00000000", "#7AA2F7", "00000000"]  
-        ),
-        right=bar.Gap(20),
-        left=bar.Gap(20),
-
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        x11_drag_polling_rate = 60,
-    ),
-]
 
 # Drag floating layouts.
 mouse = [
@@ -120,7 +66,6 @@ mouse = [
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
 
-# lazy.screen.set_wallpaper("/home/dhruv/Wallpapers/pxfuel.jpg", mode="fill")
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
