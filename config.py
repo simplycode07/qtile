@@ -11,7 +11,18 @@ max_title_length = 5
 
 random_pic = random.choice(os.listdir("/home/dhruv/Wallpapers/"))
 
-groups=[Group("1"), Group("2"), Group("3")]
+groups=[Group("1",
+              layout="columns",
+              label="一"),
+        Group("2",
+              layout="columns",
+              label="二"),
+        Group("3",
+              label="三"),
+        Group("4",
+              label="四"),
+        Group("5",
+              label="五")]
 
 for i in groups:
     keys.extend(
@@ -37,13 +48,18 @@ layouts = [
                    border_width=5,
                    margin=5,
                    margin_y=3,
-                   lower_right=True),
+                   insert_postion=1),
     layout.Max(),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(),
-    layout.MonadWide(),
+    layout.MonadTall(border_focus="#7AA2F7",
+                     border_normal="#00000000",
+                     border_width=5),
+
+    layout.MonadWide(border_focus="#7AA2F7",
+                     border_normal="#00000000",
+                     border_width=5),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -82,6 +98,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(title="Screenshot"),  # Screenshot tool
     ]
 )
 auto_fullscreen = True

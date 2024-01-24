@@ -1,3 +1,4 @@
+from libqtile import extension
 from libqtile.widget import backlight
 from libqtile.config import Key
 from libqtile.lazy import lazy

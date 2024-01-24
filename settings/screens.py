@@ -12,8 +12,12 @@ screens = [
         wallpaper_mode="fill",
         top=bar.Bar(
             [
+                widget.Spacer(length=10),
+
                 widget.CurrentLayout(padding=2),
-                widget.GroupBox(padding=4),
+                widget.GroupBox(inactive="#556ea6",
+                                padding=4),
+
                 widget.Prompt(),
                 widget.TaskList(icon_size=20,
                                 border="00000000",
@@ -47,13 +51,17 @@ screens = [
 
                 widget.QuickExit(default_text="[Exit]",
                                  countdown_format="[{} Sec]",
-                                 padding=2),
+                                 padding=2,),
+
+                widget.Spacer(length=10),
             ],
             20,
+            opacity = 0.8,
+            margin = [5, 5, 5, 5],
 
-            border_width=[2, 20, 2, 20], 
+            border_width=[2, 2, 2, 2], 
             # border_color=["#7AA2F7", "00000000", "#7AA2F7", "00000000"]  
-            border_color=["#85caff", "#00000000", "#85caff", "#00000000"]
+            # border_color=["#85caff", "#85caff", "#85caff", "#85caff"]
         ),
 
         x11_drag_polling_rate = 60,
