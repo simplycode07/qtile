@@ -22,40 +22,50 @@ screens = [
                 widget.TaskList(icon_size=20,
                                 border="00000000",
                                 margin=0,
-                                padding_y=0,
+                                padding_y=2,
                                 padding_x=5,
                                 parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_length else ""
 
                                 ),
 
-                widget.ThermalZone(padding=2, margin=2),
+                widget.ThermalZone(padding=0, margin=0),
+
+                widget.Sep(),
 
                 widget.Clock(format="%d %h, %H:%M",
-                             padding_x=2,
-                             margin_x=2),
+                             padding=0,
+                             margin=0),
+
+                widget.Sep(),
 
                 widget.PulseVolume(fmt="󰓃 {}",
                                    step=2,
-                                   padding=2),
+                                   padding=0),
+
+                widget.Sep(),
 
                 widget.Battery(format='{char} {percent:2.0%} {watt:.1f} W',
-                               padding=2,
+                               padding=0,
                                discharge_char = "",
                                charge_char = "󱐋",
                                empty_char = "∅"),
 
+                widget.Sep(),
+
                 widget.Backlight(backlight_name="amdgpu_bl0",
                                  change_command="brightnessctl set {0}%",
                                  step=5.2,
-                                 padding=2),
+                                 padding=0),
 
-                widget.QuickExit(default_text="[Exit]",
-                                 countdown_format="[{} Sec]",
-                                 padding=2,),
+                widget.Sep(),
+
+                widget.QuickExit(default_text="[󰐥]",
+                                 countdown_format="[{}]",
+                                 padding=0),
 
                 widget.Spacer(length=10),
             ],
-            20,
+            25,
             opacity = 0.8,
             margin = [5, 5, 5, 5],
 
