@@ -30,19 +30,19 @@ screens = [
 
                 widget.ThermalZone(padding=0, margin=0),
 
-                widget.Sep(),
+                widget.Sep(padding=16),
 
                 widget.Clock(format="%d %h, %H:%M",
                              padding=0,
                              margin=0),
 
-                widget.Sep(),
+                widget.Sep(padding=16),
 
                 widget.PulseVolume(fmt="󰓃 {}",
                                    step=2,
                                    padding=0),
 
-                widget.Sep(),
+                widget.Sep(padding=16),
 
                 widget.Battery(format='{char} {percent:2.0%} {watt:.1f} W',
                                padding=0,
@@ -50,14 +50,14 @@ screens = [
                                charge_char = "󱐋",
                                empty_char = "∅"),
 
-                widget.Sep(),
+                widget.Sep(padding=16),
 
                 widget.Backlight(backlight_name="amdgpu_bl0",
                                  change_command="brightnessctl set {0}%",
                                  step=5.2,
                                  padding=0),
 
-                widget.Sep(),
+                widget.Sep(padding=16),
 
                 widget.QuickExit(default_text="[󰐥]",
                                  countdown_format="[{}]",

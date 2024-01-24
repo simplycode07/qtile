@@ -36,7 +36,7 @@ for i in groups:
             Key(
                 [mod, "shift"],
                 i.name,
-                lazy.window.togroup(i.name, switch_group=True),
+                lazy.window.togroup(i.name),
                 desc="Switch to & move focused window to group {}".format(i.name),
             ),
         ]
@@ -70,8 +70,8 @@ layouts = [
 widget_defaults = dict(
     font="sans",
     fontsize=16,
-    padding=15,
 )
+
 extension_defaults = widget_defaults.copy()
 
 
@@ -127,5 +127,3 @@ wmname = "Qtile"
 def autostart():
     script = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.Popen([script])
-
-

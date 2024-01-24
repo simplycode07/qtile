@@ -14,7 +14,7 @@ keys = [
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key(["mod1"], "Tab", lazy.layout.next(), desc="Move window focus to other window"),
+    Key(["mod1"], "Tab", lazy.group.next_window(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
@@ -75,4 +75,7 @@ keys = [
     # move between workspaces
     Key([mod], "Tab", lazy.screen.next_group()),
     Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
+
+    # lock screen
+    Key([], "XF86PowerOff", lazy.spawn("cinnamon-screensaver-command -l")),
 ]
