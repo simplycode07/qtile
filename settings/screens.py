@@ -6,6 +6,8 @@ import random, os
 random_pic = random.choice(os.listdir("/home/dhruv/Wallpapers/"))
 max_title_length = 10
 
+highlight_color = "#1f274f"
+
 screens = [
     Screen(
         wallpaper="/home/dhruv/Wallpapers/"+random_pic,
@@ -15,10 +17,19 @@ screens = [
                 widget.Spacer(length=10),
 
                 widget.CurrentLayout(padding=2),
+
                 widget.GroupBox(inactive="#556ea6",
+                                highlight_method="line",
+                                highlight_color=[highlight_color, highlight_color],
+                                this_current_screen_border=highlight_color,
+                                this_screen_border=highlight_color,
+                                disable_drag=True,
                                 padding=4),
 
-                widget.Prompt(),
+                widget.Prompt(font="JetBrainsMono Nerd Font",
+                              fmt="${}",
+                              prompt=" "),
+
                 widget.TaskList(icon_size=20,
                                 border="00000000",
                                 margin=0,
@@ -29,19 +40,29 @@ screens = [
                                 ),
 
                 widget.ThermalZone(padding=0, margin=0),
-
                 widget.Sep(padding=16),
 
                 widget.Clock(format="%d %h, %H:%M",
                              padding=0,
                              margin=0),
-
                 widget.Sep(padding=16),
 
-                widget.PulseVolume(fmt="󰓃 {}",
+                widget.PulseVolume(fmt="{}",
+                                   emoji=True,
+                                   emoji_list=["󰸈 ", "󰖀 ", "󰕾 ", " "],
                                    step=2,
                                    padding=0),
 
+                widget.PulseVolume(fmt="{}",
+                                   step=2,
+                                   padding=0),
+                widget.Sep(padding=16),
+
+                widget.Backlight(backlight_name="amdgpu_bl0",
+                                 change_command="brightnessctl set {0}%",
+                                 fmt="󰖨  {}",
+                                 step=5.2,
+                                 padding=0),
                 widget.Sep(padding=16),
 
                 widget.Battery(format='{char} {percent:2.0%} {watt:.1f} W',
@@ -49,14 +70,6 @@ screens = [
                                discharge_char = "",
                                charge_char = "󱐋",
                                empty_char = "∅"),
-
-                widget.Sep(padding=16),
-
-                widget.Backlight(backlight_name="amdgpu_bl0",
-                                 change_command="brightnessctl set {0}%",
-                                 step=5.2,
-                                 padding=0),
-
                 widget.Sep(padding=16),
 
                 widget.QuickExit(default_text="[󰐥]",

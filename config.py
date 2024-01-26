@@ -1,5 +1,5 @@
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from settings.keys import keys
 from settings.screens import screens
@@ -42,6 +42,17 @@ for i in groups:
         ]
     )
 
+groups.append(
+        ScratchPad("scratchpad", [
+            DropDown("term", terminal, opacity=0.8, height=0.6, width=0.7, x=0.15, y=0.2),
+        ]),
+    )
+
+keys.extend(
+        [
+            Key([mod], "x", lazy.group["scratchpad"].dropdown_toggle("term")),
+        ]
+    )
 layouts = [
     layout.Columns(border_focus="#7AA2F7",
                    border_normal="#00000000",
