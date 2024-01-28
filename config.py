@@ -1,5 +1,5 @@
-from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile import layout, hook
+from libqtile.config import Click, Drag, Group, Key, Match, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from settings.keys import keys
 from settings.screens import screens
@@ -7,9 +7,14 @@ import os, random, subprocess
 
 mod = "mod4"
 terminal = "kitty"
-max_title_length = 5
+wallpaper_dir = "/home/dhruv/Wallpapers/"
 
-random_pic = random.choice(os.listdir("/home/dhruv/Wallpapers/"))
+def set_wallpaper(qtile, picture=None):
+    if picture == None:
+        picture = random.choice(os.listdir(wallpaper_dir))
+
+    for screen in screens:
+        screen.set_wallpaper(wallpaper_dir+picture, "fill")
 
 groups=[Group("1",
               layout="columns",
@@ -51,6 +56,7 @@ groups.append(
 keys.extend(
         [
             Key([mod], "x", lazy.group["scratchpad"].dropdown_toggle("term")),
+            Key([mod], "w", lazy.function(set_wallpaper)),
         ]
     )
 layouts = [
@@ -138,3 +144,4 @@ wmname = "Qtile"
 def autostart():
     script = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.Popen([script])
+    lazy.function(set_wallpaper)

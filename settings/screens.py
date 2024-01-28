@@ -1,17 +1,12 @@
 from libqtile import bar, widget
 from libqtile.config import Screen
-from libqtile.lazy import lazy
-import random, os
 
-random_pic = random.choice(os.listdir("/home/dhruv/Wallpapers/"))
 max_title_length = 10
 
 highlight_color = "#1f274f"
 
 screens = [
     Screen(
-        wallpaper="/home/dhruv/Wallpapers/"+random_pic,
-        wallpaper_mode="fill",
         top=bar.Bar(
             [
                 widget.Spacer(length=10),
@@ -35,6 +30,7 @@ screens = [
                                 margin=0,
                                 padding_y=2,
                                 padding_x=5,
+                                # this is to slice title and add ... at end
                                 parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_length else ""
 
                                 ),
@@ -46,7 +42,8 @@ screens = [
                              padding=0,
                              margin=0),
                 widget.Sep(padding=16),
-
+                
+                # Using 2 widgets because the scroll function doesnt work with TextBox, I could use mouse_callback but thats too much work
                 widget.PulseVolume(fmt="{}",
                                    emoji=True,
                                    emoji_list=["󰸈 ", "󰖀 ", "󰕾 ", " "],
@@ -81,10 +78,7 @@ screens = [
             25,
             opacity = 0.8,
             margin = [5, 5, 5, 5],
-
             border_width=[2, 2, 2, 2], 
-            # border_color=["#7AA2F7", "00000000", "#7AA2F7", "00000000"]  
-            # border_color=["#85caff", "#85caff", "#85caff", "#85caff"]
         ),
 
         x11_drag_polling_rate = 60,

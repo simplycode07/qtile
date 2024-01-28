@@ -73,7 +73,7 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
 
     # move between workspaces
-    Key([mod], "Tab", lazy.screen.next_group()),
+    Key([mod], "Tab", lazy.screen.next_group(skip_empty=True)),
     Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
 
     # lock screen
