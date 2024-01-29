@@ -9,7 +9,7 @@ mod = "mod4"
 terminal = "kitty"
 wallpaper_dir = "/home/dhruv/Wallpapers/"
 
-def set_wallpaper(qtile, picture=None):
+def set_wallpaper(qtile=None, picture=None):
     if picture == None:
         picture = random.choice(os.listdir(wallpaper_dir))
 
@@ -144,4 +144,5 @@ wmname = "Qtile"
 def autostart():
     script = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.Popen([script])
-    lazy.function(set_wallpaper)
+    # lazy.function(set_wallpaper)
+    set_wallpaper()
