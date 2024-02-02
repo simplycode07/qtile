@@ -76,7 +76,7 @@ screens = [
                 widget.Spacer(length=10),
             ],
             25,
-            opacity = 0.8,
+            opacity = 1,
             margin = [5, 5, 5, 5],
             border_width=[2, 2, 2, 2], 
         ),
