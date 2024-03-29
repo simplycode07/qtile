@@ -35,6 +35,8 @@ screens = [
 
                                 ),
 
+                widget.Sep(padding=16),
+
                 widget.ThermalZone(padding=0, margin=0),
                 widget.Sep(padding=16),
 
