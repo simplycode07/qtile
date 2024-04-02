@@ -11,7 +11,12 @@ wallpaper_dir = "/home/dhruv/Wallpapers/"
 
 def set_wallpaper(qtile=None, picture=None):
     if picture == None:
-        picture = random.choice(os.listdir(wallpaper_dir))
+        wallpaper_list = os.listdir(wallpaper_dir)
+        for i in wallpaper_list:
+            if os.path.isdir(i):
+                wallpaper_list.remove(i)
+
+        picture = random.choice(wallpaper_list)
 
     for screen in screens:
         screen.set_wallpaper(wallpaper_dir+picture, "fill")
