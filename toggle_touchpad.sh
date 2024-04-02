@@ -1,10 +1,11 @@
 #!/bin/bash
 
-state=$( xinput list-props 12 | grep "Device Enabled" | grep -o "[01]$" )
+touchpad_id=$( xinput list | grep "Touchpad" | grep -o -P "id=\d\d" | grep -o -P "\d\d" )
+state=$( xinput list-props $touchpad_id | grep "Device Enabled" | grep -o "[01]$" )
 echo $state
 
 if [ "$state" -eq '1' ];then
-    xinput --disable 12 && echo "TouchPad Disabled" 
+    xinput --disable $touchpad_id && echo "TouchPad Disabled" 
 else
-    xinput --enable 12 && echo "TouchPad Enabled"
+    xinput --enable $touchpad_id && echo "TouchPad Enabled"
 fi
