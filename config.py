@@ -66,15 +66,20 @@ keys.extend(
     )
 layouts = [
     layout.Columns(border_focus="#7AA2F7",
-                   border_normal="#00000000",
                    border_width=5,
                    margin=5,
                    margin_y=3,
                    insert_postion=1),
     layout.Max(),
     # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
+    layout.Bsp(border_focus="#7AA2F7",
+               border_normal="#00000000",
+               border_width=5),
+ 
+    layout.Matrix(border_focus="#7AA2F7",
+                  border_normal="#00000000",
+                  border_width=5),
+
     layout.MonadTall(border_focus="#7AA2F7",
                      border_normal="#00000000",
                      border_width=5),
@@ -124,7 +129,10 @@ floating_layout = layout.Floating(
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Screenshot"),  # Screenshot tool
-    ]
+    ],
+    border_focus="#7AA2F7",
+    border_normal="#00000000",
+    border_width=3,
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
