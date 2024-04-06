@@ -72,7 +72,8 @@ keys = [
 
     # screenshot
     Key([], "Print", lazy.spawn("gnome-screenshot -p"), desc="Copy Screenshot to Clipboard"),
-    Key(["shift"], "Print", lazy.spawn("gnome-screenshot -a -p"), desc="Screenshot of area to clipboard"),
+    # Key(["shift"], "Print", lazy.spawn("gnome-screenshot -a -c"), desc="Screenshot of area to clipboard"),
+    Key(["shift"], "Print", lazy.spawn(["sh","-c","gnome-screenshot -acf /tmp/screenshot && cat /tmp/screenshot | xclip -i -selection clipboard -target image/png"]), desc="Screenshot of area to clipboard"),
 
     # sound and volume controls
     Key([], "XF86AudioMute", lazy.widget["pulsevolume"].mute()),
