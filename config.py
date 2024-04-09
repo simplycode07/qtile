@@ -13,7 +13,7 @@ def set_wallpaper(qtile=None, picture=None):
     if picture == None:
         wallpaper_list = os.listdir(wallpaper_dir)
         for i in wallpaper_list:
-            if os.path.isdir(i):
+            if os.path.isdir(wallpaper_dir + i):
                 wallpaper_list.remove(i)
 
         picture = random.choice(wallpaper_list)
