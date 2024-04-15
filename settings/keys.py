@@ -1,5 +1,3 @@
-from libqtile import extension
-from libqtile.widget import backlight
 from libqtile.config import Key
 from libqtile.lazy import lazy
 import os, subprocess
@@ -8,7 +6,6 @@ mod = "mod4"
 terminal = "kitty"
 
 def toggle_touchpad(qtile=None):
-    lazy.spawn(terminal)
     script = os.path.expanduser("~/.config/qtile/toggle_touchpad.sh")
     subprocess.Popen([script])
 
@@ -91,7 +88,7 @@ keys = [
     # lock screen
     Key([], "XF86PowerOff", lazy.spawn("cinnamon-screensaver-command -l")),
 
-    # "XF86TouchpadToggle": 0x1008FFA9,
+    # toggle touchpad
     Key([], "XF86TouchpadToggle", lazy.function(toggle_touchpad)),
 
 ]

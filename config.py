@@ -66,6 +66,7 @@ keys.extend(
     )
 layouts = [
     layout.Columns(border_focus="#7AA2F7",
+                   border_normal="#00000000",
                    border_width=5,
                    margin=5,
                    margin_y=3,
