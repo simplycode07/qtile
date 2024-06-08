@@ -1,4 +1,4 @@
-from libqtile import bar, widget
+from libqtile import qtile, bar, widget
 from libqtile.config import Screen
 
 max_title_length = 10
@@ -26,12 +26,14 @@ screens = [
                               prompt=" "),
 
                 widget.TaskList(icon_size=20,
-                                border="00000000",
+                                border=highlight_color,
+                                highlight_method="block",
                                 margin=0,
-                                padding_y=2,
+                                padding_y=8,
                                 padding_x=5,
                                 # this is to slice title and add ... at end
-                                parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_length else ""
+                                parse_text=lambda x: x[:max_title_length]+ "..." if len(x) > max_title_length else "",
+
 
                                 ),
 
@@ -77,10 +79,11 @@ screens = [
 
                 widget.Spacer(length=10),
             ],
-            25,
+            35,
             opacity = 1,
             margin = [5, 5, 5, 5],
             border_width=[2, 2, 2, 2], 
+            border_color="#00000000",
         ),
 
         x11_drag_polling_rate = 60,

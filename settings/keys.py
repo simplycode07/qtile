@@ -26,6 +26,11 @@ keys = [
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
+    Key([mod, "mod1"], "j", lazy.layout.flip_down()),
+    Key([mod, "mod1"], "k", lazy.layout.flip_up()),
+    Key([mod, "mod1"], "h", lazy.layout.flip_left()),
+    Key([mod, "mod1"], "l", lazy.layout.flip_right()),
+
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
@@ -78,8 +83,8 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol(), desc="Decrease Vol"),
     
     # brightness control
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 5%+")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set 5+")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5-")),
 
     # move between workspaces
     Key([mod], "Tab", lazy.screen.next_group(skip_empty=True)),

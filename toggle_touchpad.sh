@@ -5,7 +5,7 @@ state=$( xinput list-props $touchpad_id | grep "Device Enabled" | grep -o "[01]$
 echo $state
 
 if [ "$state" -eq '1' ];then
-    xinput --disable $touchpad_id && echo "TouchPad Disabled" 
+    xinput --disable $touchpad_id && notify-send "TouchPad Disabled" -t 1500
 else
-    xinput --enable $touchpad_id && echo "TouchPad Enabled"
+    xinput --enable $touchpad_id && notify-send "TouchPad Enabled" -t 1500
 fi

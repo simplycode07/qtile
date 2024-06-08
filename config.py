@@ -9,6 +9,13 @@ mod = "mod4"
 terminal = "kitty"
 wallpaper_dir = "/home/dhruv/Wallpapers/"
 
+# WM_NAME(UTF8_STRING) = "Picture-in-picture"
+
+# borders
+color_focused = "#ffffff"
+color_normal = "#000000"
+border_width = 2
+
 def set_wallpaper(qtile=None, picture=None):
     if picture == None:
         wallpaper_list = os.listdir(wallpaper_dir)
@@ -54,40 +61,51 @@ for i in groups:
 
 groups.append(
         ScratchPad("scratchpad", [
-            DropDown("term", terminal, opacity=0.8, height=0.6, width=0.7, x=0.15, y=0.2),
+            DropDown("term", 
+                     terminal, 
+                     height=0.6, 
+                     width=0.7,
+                     x=0.15,
+                     y=0.2,
+                     opacity=1,
+                     warp_pointer = True,
+            ),
         ]),
     )
 
 keys.extend(
         [
+            Key([mod], "y", lazy.group["scratchpad"].dropdown_toggle("term")),
             Key([mod], "x", lazy.group["scratchpad"].dropdown_toggle("term")),
             Key([mod], "w", lazy.function(set_wallpaper)),
         ]
     )
 layouts = [
-    layout.Columns(border_focus="#7AA2F7",
-                   border_normal="#00000000",
-                   border_width=5,
+    layout.Columns(border_focus=color_focused,
+                   border_normal=color_normal,
+                   border_width=border_width,
                    margin=5,
                    margin_y=3,
                    insert_postion=1),
     layout.Max(),
     # layout.Stack(num_stacks=2),
-    layout.Bsp(border_focus="#7AA2F7",
-               border_normal="#00000000",
-               border_width=5),
+    layout.Bsp(border_focus=color_focused,
+               border_normal=color_normal,
+               border_width=border_width,
+               margin=5,
+               margin_y=3),
  
-    layout.Matrix(border_focus="#7AA2F7",
-                  border_normal="#00000000",
-                  border_width=5),
+    layout.Matrix(border_focus=color_focused,
+                  border_normal=color_normal,
+                  border_width=border_width),
 
-    layout.MonadTall(border_focus="#7AA2F7",
-                     border_normal="#00000000",
-                     border_width=5),
+    layout.MonadTall(border_focus=color_focused,
+                     border_normal=color_normal,
+                     border_width=border_width),
 
-    layout.MonadWide(border_focus="#7AA2F7",
-                     border_normal="#00000000",
-                     border_width=5),
+    layout.MonadWide(border_focus=color_focused,
+                     border_normal=color_normal,
+                     border_width=border_width),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -97,7 +115,7 @@ layouts = [
 
 widget_defaults = dict(
     font="sans",
-    fontsize=16,
+    fontsize=18,
 )
 
 extension_defaults = widget_defaults.copy()
