@@ -70,7 +70,8 @@ keys = [
     # launch browsers and shit
     Key(["mod1"], "Space", lazy.spawn("rofi -show drun"), desc="run rofi"),
     Key([mod], "b", lazy.spawn("brave-browser"), desc="Spawn brave browser"), 
-    Key([mod], "e", lazy.spawn("nemo"), desc="Spawn File explorer"),
+    Key([mod], "e", lazy.spawn("kitty -e ranger"), desc="Spawn Ranger"),
+    Key([mod, "shift"], "e", lazy.spawn("nemo"), desc="Spawn File explorer"),
 
     # screenshot
     Key([], "Print", lazy.spawn("gnome-screenshot -p"), desc="Copy Screenshot to Clipboard"),
